@@ -1,0 +1,21 @@
+﻿@if (string.IsNullOrEmpty(Model[0].MsgErro))
+{
+    foreach (var item in Model)
+    {
+        <div style="overflow: hidden; margin-top: 50px;" class="jumbotron">
+            <div style="float: left; margin-right: 50px;">
+                <img src="@item.UrlImagem" height="200" width="200" />
+            </div>
+            <div style="margin-left: 50px;">
+                <h2><a href="@item.UrlWiki">@item.Nome</a></h2>
+                <p>@item.Descricao</p>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div style="overflow: hidden; margin-top: 50px;" class="jumbotron">
+        @Model[0].MsgErro
+    </div>
+}

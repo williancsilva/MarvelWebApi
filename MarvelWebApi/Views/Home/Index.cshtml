@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@model  List<MarvelWebApi.Models.Personagem>
+<script type="text/javascript">
+    function Enviar() {
+        if ($('#txtPersonagem').val() != "") {
+            SelecionaPersonagem();
+        } else {
+            alert("Digite o nome do personagem")
+        }
+
+    }
+
+    function SelecionaPersonagem()
+    {
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("SelecionaPersonagem", "Home")",
+            data: { nomePersonagem : $('#txtPersonagem').val() },
+            success: function (d) {
+                $("#divPersonagem").html(d);
+            },
+            error: function (xhr) {
+                alert('error');
+            }
+        });
+    }
+</script>
+<div class="bs-example">
+    <form>
+        <div class="form-group">
+            <h1>Digite o nome do personagem:</h1>
+            <input type="text" class="form-control" id="txtPersonagem" />
+        </div>
+        <input class="btn btn-default" type="button" value="Enviar" onclick="Enviar();">
+    </form>
+</div>
+<div id="divPersonagem"></div>
